@@ -7,9 +7,13 @@
     <title>Document</title>
     <script>
         a = function(){
-          // if (typeof window.klaytn !== 'undefined') {
-        alert(klaytn.selectedAddress);    
-        //}
+            if(window.klaytn !== 'undefined'){
+            if(window.klaytn.isKaikas){
+           	const accounts = await window.klaytn.enable()
+            	const account = accounts[0] 
+            	console.log(account)
+                alert(account)
+            }
         
     }
     </script>
