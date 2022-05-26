@@ -9,7 +9,7 @@
         a = function(){
             if(window.klaytn !== 'undefined'){
             if(window.klaytn.isKaikas){
-           	const accounts = await window.klaytn.enable()
+           	const accounts = window.klaytn.enable()
             	const account = accounts[0] 
             	console.log(account)
                 alert(account)
