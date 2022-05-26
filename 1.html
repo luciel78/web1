@@ -8,15 +8,14 @@
     <script>
         a = function(){
             if(window.klaytn !== 'undefined'){
-               if(window.klaytn.isKaikas){
-                   const accounts = window.klaytn.enable();
-                   const account = accounts[0];
-                   alert(account[0]);
-                   alert(window.klaytn.isKaikas)
-               }
+                if(window.klaytn.isKaikas){
+                    const accounts = window.klaytn.enable();
+                    const account = accounts[0];
+                    alert(account);
+                    alert(window.klaytn.isKaikas);
+                }
             }
-        
-    }
+        }
     </script>
 </head>
 <body>
