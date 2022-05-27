@@ -25,6 +25,7 @@
                  if (this.readyState == 4 && this.status == 200) {
                     let json = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
                     let ipfsurl = json.items[0].tokenUri;
+                     alert(json);
                      alert(json.items[0]);
                      alert(json.items[0].tokenUri);
                     document.getElementById("myImageId").src=ipfsurl;
