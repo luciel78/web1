@@ -30,11 +30,10 @@
                     // let ipfs = json.items[0].tokenUri;  문자열
 
                     let json = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
-                    let ipfsurl = json.items[0].tokenUri.substring(7);
+                    let ipfsurl = json.items[0].tokenUri;
                      alert(json.items[0]);
                      alert(json.items[0].tokenUri);
-                     alert(ipfsurl);
-                    document.getElementById("myImageId").src="https://gateway.pinata.cloud/ipfs/" + ipfsurl;
+                    document.getElementById("myImageId").src=ipfsurl;
                     }
             };
 
