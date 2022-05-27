@@ -12,10 +12,13 @@
                     const accounts = window.klaytn.enable();
                     const account = accounts[0];
                     alert(account);
-                    let OwnerAddress = klaytn.selectedAddress;
+                    var OwnerAddress = klaytn.selectedAddress;
                     alert(window.klaytn.isKaikas);
-
-                    function UserAction(OwnerAddress) {
+                    UserAction(OwnerAddress);                    
+                }
+            }
+        }
+        function UserAction(GetAddress) {
             var xhttp = new XMLHttpRequest();            
             xhttp.onreadystatechange = function() {
                  if (this.readyState == 4 && this.status == 200) {
@@ -32,15 +35,12 @@
                     }
             };
 
-            xhttp.open("GET", "https://kip17-api.klaytnapi.com/v2/contract/nftalias-test2/owner/" + OwnerAddress + "?size=100", false);
+            xhttp.open("GET", "https://kip17-api.klaytnapi.com/v2/contract/nftalias-test2/owner/" + GetAddress + "?size=100", false);
             xhttp.setRequestHeader("Authorization", "Basic S0FTS1hGMzE4OVJZTE5EN0xFTTBaM05MOnlZTmZhcmpBVDdzLVoyVVp1Tm12OFVRQ3hNc3U5Mk1HR1BzdWN0VGk=");
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.setRequestHeader("x-chain-id", "1001");
             xhttp.send("Your JSON Data Here");
             alert(xhttp.status);
-        }
-                }
-            }
         }
     </script>
 </head>
