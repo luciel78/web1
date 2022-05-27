@@ -11,17 +11,41 @@
                 if(window.klaytn.isKaikas){
                     const accounts = window.klaytn.enable();
                     const account = accounts[0];
-                    alert(accounts);
-                    alert(klaytn.selectedAddress);
+                    alert(account);
+                    let OwnerAddress = klaytn.selectedAddress;
                     alert(window.klaytn.isKaikas);
+
+                    function UserAction(OwnerAddress) {
+            var xhttp = new XMLHttpRequest();            
+            xhttp.onreadystatechange = function() {
+                 if (this.readyState == 4 && this.status == 200) {
+                    // alert(this.responseText);
+                    // document.getElementById("demo").innerHTML =this.response;
+
+                    // document.getElementById("demo").innerHTML =json.items[0].tokenUri;
+                    // document.getElementById("myImageId").src=json.items[0].tokenUri;
+                    // let ipfs = json.items[0].tokenUri;  문자열
+
+                    let json = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
+                    let ipfsurl = json.items[0].tokenUri.substring(7);
+                    document.getElementById("myImageId").src="https://gateway.pinata.cloud/ipfs/" + ipfsurl;
+                    }
+            };
+
+            xhttp.open("GET", "https://kip17-api.klaytnapi.com/v2/contract/nftalias-test2/owner/" + OwnerAddress + "?size=100", false);
+            xhttp.setRequestHeader("Authorization", "Basic S0FTS1hGMzE4OVJZTE5EN0xFTTBaM05MOnlZTmZhcmpBVDdzLVoyVVp1Tm12OFVRQ3hNc3U5Mk1HR1BzdWN0VGk=");
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.setRequestHeader("x-chain-id", "1001");
+            xhttp.send("Your JSON Data Here");
+            alert(xhttp.status);
+        }
                 }
             }
         }
     </script>
 </head>
 <body>
-    nft
-    <button type="submit" onclick="a()">Search</button>
+    <button type="submit" onclick="a()">connect wallet</button>
 
     
 </body>
