@@ -13,6 +13,7 @@
                     const account = accounts[0];
                     alert(account);
                     var OwnerAddress = klaytn.selectedAddress;
+                    alert("address" + OwnerAddress);
                     alert(window.klaytn.isKaikas);
                     UserAction(OwnerAddress);                    
                 }
@@ -22,13 +23,6 @@
             var xhttp = new XMLHttpRequest();            
             xhttp.onreadystatechange = function() {
                  if (this.readyState == 4 && this.status == 200) {
-                    // alert(this.responseText);
-                    // document.getElementById("demo").innerHTML =this.response;
-
-                    // document.getElementById("demo").innerHTML =json.items[0].tokenUri;
-                    // document.getElementById("myImageId").src=json.items[0].tokenUri;
-                    // let ipfs = json.items[0].tokenUri;  문자열
-
                     let json = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
                     let ipfsurl = json.items[0].tokenUri;
                      alert(json.items[0]);
