@@ -13,7 +13,7 @@
                     const account = accounts[0];
                     alert(account);
                     var OwnerAddress = klaytn.selectedAddress;
-                    alert("address" + OwnerAddress);
+                    alert("address : " + OwnerAddress);
                     alert(window.klaytn.isKaikas);
                     UserAction(OwnerAddress);                    
                 }
@@ -31,10 +31,12 @@
                     }
             };
 
-            xhttp.open("GET", "https://kip17-api.klaytnapi.com/v2/contract/0x05ffcbfd7fe222da0b2f39fd038407cd4dd8fcc1/owner/" + GetAddress + "?size=100", false);
+            xhttp.open("GET", "https://kip17-api.klaytnapi.com/v2/contract/0x435d597b028e48507afaed009d7bc30d07d67ee8/owner/" + GetAddress + "?size=100", false);
             xhttp.setRequestHeader("Authorization", "Basic S0FTS1hGMzE4OVJZTE5EN0xFTTBaM05MOnlZTmZhcmpBVDdzLVoyVVp1Tm12OFVRQ3hNc3U5Mk1HR1BzdWN0VGk=");
             xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.setRequestHeader("x-chain-id", "8217");
+ //           xhttp.setRequestHeader("x-chain-id", "8217");
+            xhttp.setRequestHeader("x-chain-id", "1001");
+            
             xhttp.send("Your JSON Data Here");
             alert(xhttp.status);
         }
