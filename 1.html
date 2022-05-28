@@ -11,12 +11,14 @@
             if(window.klaytn !== 'undefined'){
                 if(window.klaytn.isKaikas){
                     const accounts = window.klaytn.enable();
+                    alert(accounts[0]);
                     const account = accounts[0];
-                    alert(account);
+                    alert(account);   //지갑연결 확인
+
                     let OwnerAddress = klaytn.selectedAddress;
                     alert("address : " + OwnerAddress);
                     alert(window.klaytn.isKaikas);
-                    UserAction(OwnerAddress);                    
+                    // UserAction(OwnerAddress);                    
                 }
             }
         }
