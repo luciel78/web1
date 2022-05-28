@@ -16,35 +16,34 @@
                     alert(account);   //지갑연결 확인
 
                     let OwnerAddress = klaytn.selectedAddress;
-                    alert("address : " + OwnerAddress);
-                    alert(window.klaytn.isKaikas);
+                    alert("address : " + OwnerAddress); //주소
+                    alert(window.klaytn.isKaikas); //true
                     // UserAction(OwnerAddress);                    
                 }
             }
         }
 
-        // function UserAction(GetAddress) {
-        //     var xhttp = new XMLHttpRequest();            
-        //     xhttp.onreadystatechange = function() {
-        //          if (this.readyState == 4 && this.status == 200) {
-        //             let json = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
-        //             let ipfsurl = json.items[0].tokenUri;
-        //              alert(json);
-        //              alert(json.items[0].length);
-        //              alert(json.items[0].tokenUri);
-        //             document.getElementById("myImageId").src=ipfsurl;
-        //             }
-        //     };
+        function UserAction(GetAddress) {
+            var xhttp = new XMLHttpRequest();            
+            xhttp.onreadystatechange = function() {
+                 if (this.readyState == 4 && this.status == 200) {
+                    let json = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
+                    let ipfsurl = json.items[0].tokenUri;
+                     alert(json);
+                     alert(json.items[0].length);
+                     alert(json.items[0].tokenUri);
+                    document.getElementById("myImageId").src=ipfsurl;
+                    }
+            };
 
-        //     xhttp.open("GET", "https://kip17-api.klaytnapi.com/v2/contract/0x898f2afc07924f5a4f9612449e4c4f8eca527515/owner/" + GetAddress + "?size=100", false);
-        //     xhttp.setRequestHeader("Authorization", "Basic S0FTS1hGMzE4OVJZTE5EN0xFTTBaM05MOnlZTmZhcmpBVDdzLVoyVVp1Tm12OFVRQ3hNc3U5Mk1HR1BzdWN0VGk=");
-        //     xhttp.setRequestHeader("Content-type", "application/json");
-        //     xhttp.setRequestHeader("x-chain-id", "8217");
-        //     xhttp.setRequestHeader("x-chain-id", "1001");//바오밥
+            xhttp.open("GET", "https://kip17-api.klaytnapi.com/v2/contract/0x898f2afc07924f5a4f9612449e4c4f8eca527515/owner/" + GetAddress + "?size=100", false);
+            xhttp.setRequestHeader("Authorization", "Basic S0FTS1hGMzE4OVJZTE5EN0xFTTBaM05MOnlZTmZhcmpBVDdzLVoyVVp1Tm12OFVRQ3hNc3U5Mk1HR1BzdWN0VGk=");
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.setRequestHeader("x-chain-id", "8217");
             
-        //     xhttp.send();
-        //     alert(xhttp.status);
-        // }
+            xhttp.send();
+            alert(xhttp.status);
+        }
     </script>
 </head>
 <body>
