@@ -6,45 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        a = function(){
-            if(window.klaytn !== 'undefined'){
-                if(window.klaytn.isKaikas){
-                    const accounts = window.klaytn.enable();
-                    const account = accounts[0];
-                    alert(account);
-                    var OwnerAddress = klaytn.selectedAddress;
-                    alert("address : " + OwnerAddress);
-                    alert(window.klaytn.isKaikas);
-                    UserAction(OwnerAddress);                    
-                }
-            }
-        }
-        function UserAction(GetAddress) {
-            var xhttp = new XMLHttpRequest();            
-            xhttp.onreadystatechange = function() {
-                 if (this.readyState == 4 && this.status == 200) {
-                    let json = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
-                    let ipfsurl = json.items[0].tokenUri;
-                     alert(json);
-                     alert(json.items[0].length);
-                     alert(json.items[0].tokenUri);
-                    document.getElementById("myImageId").src=ipfsurl;
-                    }
-            };
+        Walletconnect = function(){
+            console.log(kalytn.isKaikas);
+            alert(window.klaytn.isKaikas);
 
-            xhttp.open("GET", "https://kip17-api.klaytnapi.com/v2/contract/0x898f2afc07924f5a4f9612449e4c4f8eca527515/owner/" + GetAddress + "?size=100", false);
-            xhttp.setRequestHeader("Authorization", "Basic S0FTS1hGMzE4OVJZTE5EN0xFTTBaM05MOnlZTmZhcmpBVDdzLVoyVVp1Tm12OFVRQ3hNc3U5Mk1HR1BzdWN0VGk=");
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.setRequestHeader("x-chain-id", "8217");
- //           xhttp.setRequestHeader("x-chain-id", "1001");
-            
-            xhttp.send("Your JSON Data Here");
-            alert(xhttp.status);
+            // if(window.klaytn !== 'undefined'){
+            //     if(window.klaytn.isKaikas){
+            //         const accounts = window.klaytn.enable();
+            //         const account = accounts[0];
+            //         alert(account);
+            //         let OwnerAddress = klaytn.selectedAddress;
+            //         alert("address : " + OwnerAddress);
+            //         alert(window.klaytn.isKaikas);
+            //         UserAction(OwnerAddress);                    
+            //     }
+            // }
         }
+
+        // function UserAction(GetAddress) {
+        //     var xhttp = new XMLHttpRequest();            
+        //     xhttp.onreadystatechange = function() {
+        //          if (this.readyState == 4 && this.status == 200) {
+        //             let json = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
+        //             let ipfsurl = json.items[0].tokenUri;
+        //              alert(json);
+        //              alert(json.items[0].length);
+        //              alert(json.items[0].tokenUri);
+        //             document.getElementById("myImageId").src=ipfsurl;
+        //             }
+        //     };
+
+        //     xhttp.open("GET", "https://kip17-api.klaytnapi.com/v2/contract/0x898f2afc07924f5a4f9612449e4c4f8eca527515/owner/" + GetAddress + "?size=100", false);
+        //     xhttp.setRequestHeader("Authorization", "Basic S0FTS1hGMzE4OVJZTE5EN0xFTTBaM05MOnlZTmZhcmpBVDdzLVoyVVp1Tm12OFVRQ3hNc3U5Mk1HR1BzdWN0VGk=");
+        //     xhttp.setRequestHeader("Content-type", "application/json");
+        //     xhttp.setRequestHeader("x-chain-id", "8217");
+        //     xhttp.setRequestHeader("x-chain-id", "1001");//바오밥
+            
+        //     xhttp.send();
+        //     alert(xhttp.status);
+        // }
     </script>
 </head>
 <body>
-    <button type="submit" onclick="a()">connect wallet</button>
+    <button type="submit" onclick="Walletconnect()">connect wallet</button>
             <p id="demo"></p>
         <img id="myImageId">    
 </body>
