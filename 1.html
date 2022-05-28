@@ -7,20 +7,18 @@
     <title>Document</title>
     <script>
         Walletconnect = function(){
-            console.log(kalytn.isKaikas);
-            alert(window.klaytn.isKaikas);
 
-            // if(window.klaytn !== 'undefined'){
-            //     if(window.klaytn.isKaikas){
-            //         const accounts = window.klaytn.enable();
-            //         const account = accounts[0];
-            //         alert(account);
-            //         let OwnerAddress = klaytn.selectedAddress;
-            //         alert("address : " + OwnerAddress);
-            //         alert(window.klaytn.isKaikas);
-            //         UserAction(OwnerAddress);                    
-            //     }
-            // }
+            if(window.klaytn !== 'undefined'){
+                if(window.klaytn.isKaikas){
+                    const accounts = window.klaytn.enable();
+                    const account = accounts[0];
+                    alert(account);
+                    let OwnerAddress = klaytn.selectedAddress;
+                    alert("address : " + OwnerAddress);
+                    alert(window.klaytn.isKaikas);
+                    UserAction(OwnerAddress);                    
+                }
+            }
         }
 
         // function UserAction(GetAddress) {
