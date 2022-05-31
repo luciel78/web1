@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 지갑 주소 확인
+        Walletconnect = function(){
+            if(window.klaytn !== 'undefined'){
+                if(window.klaytn.isKaikas){
+                    const accounts = window.klaytn.enable();
+                    const account = accounts[0];
+                    let OwnerAddress = klaytn.selectedAddress;
+                    alert("address : " + OwnerAddress); // 유저 지갑 주소
+                    UserAction(OwnerAddress);                    
+                }
+            }
+        }
+
+        //지갑내 메타데이터 확인
+        function UserAction(GetAddress) {
+            alert(GetAddress);
+            // const Nftaddress = "0x05ffcbfd7fe222da0b2f39fd038407cd4dd8fcc1"; // NFT 상균
+            // GetAddress = "0xe7cfc757fd8858052664ebd38f645e2f7468ff37";
+            const Nftaddress = "0x90329d076a0c7c62cacfc389c523c21b3b37bd8b"; // NFT 관순
+            GetAddress = "0x40064acaf01e98eb06231533bae333eb6da54400";
+
+            //지갑내 데타데이터 json 불러오기
+            var xhttp = new XMLHttpRequest();            
+            xhttp.onreadystatechange = function() {
+                 if (this.readyState == 4 && this.status == 200) {
+                    let json = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
+                    let i = json.items.length; // items 개수 확인
+                    Getimage(json);
+                }
+            }
+            xhttp.open("GET", "https://th-api.klaytnapi.com/v2/contract/nft/" + Nftaddress + "/owner/" + GetAddress, false);
+            xhttp.setRequestHeader("Authorization", "Basic S0FTS09JOTVJOTlHSkVGUDJFQUZFOEY2OmNOeGZvTHlMYVRUVHBobUltM0NWRFVxa21JMjViZm9pcWIySzJTNDg=");
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.setRequestHeader("x-chain-id", "8217");
+            
+            xhttp.send();
+            alert(xhttp.status);
+        }
+
+
+        // 지갑내 메타데이터내 이미지 확인
+        function Getimage(jsonobj){
+            var xhttpjs = new XMLHttpRequest();
+            xhttpjs.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let jsonimg = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
+                    alert(jsonimg);
+
+                // 이미지 띄우기
+                var x = document.createElement("IMG");
+                x.setAttribute("src", jsonimg.image);
+                x.setAttribute("width", "304");
+                x.setAttribute("height", "228");
+                x.setAttribute("alt", "no image");
+                document.body.appendChild(x);
+                }
+                alert(jsonimg);
+            };
+            let ipfsurl = jsonobj.items[0].tokenUri; // 주소안 객체 image url 포함
+            alert(ipfsurl);  //ipfs://bafybeifr5esku7gii2jczjaf7dbvdg2hgj6owjeiehthztzliiixvofbaq/json/8736.json
+            let editurl = "ipfs.io/ipfs/" + ipfsurl.slice(7);
+            alert(editurl);  //ipfs.io/ipfs/bafybeifr5esku7gii2jczjaf7dbvdg2hgj6owjeiehthztzliiixvofbaq/json/8736.json
+            // alert(json.items[0].tokenUri.slice(7)):
+            // 지갑내 메타데이터내 이미지 주소 불러오기
+                xhttpjs.open("GET", "ipfs.io/ipfs/bafybeifr5esku7gii2jczjaf7dbvdg2hgj6owjeiehthztzliiixvofbaq/json/8736.json", false);
+            // }
+            // xhttpjs.open("GET", json.items[0].tokenUri, false);
+
+            
+            xhttpjs.send();
+            alert(xhttpjs.status);
+        }
+
+
+
+
+    </script>
+</head>
+<body>
+    <button type="submit" onclick="Walletconnect()">connect wallet</button>
+</body>
+</html>
