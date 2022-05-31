@@ -23,7 +23,7 @@
         function UserAction(GetAddress) {
             alert(GetAddress);
             const Nftaddress = "0x05ffcbfd7fe222da0b2f39fd038407cd4dd8fcc1"; // NFT 
-//            Getaddress = "0xe7cfc757fd8858052664ebd38f645e2f7468ff37";
+//            GetAddress = "0xe7cfc757fd8858052664ebd38f645e2f7468ff37";
 
 
             var xhttp = new XMLHttpRequest();            
@@ -56,7 +56,7 @@
                 }
 
             }
-            xhttp.open("GET", "https://th-api.klaytnapi.com/v2/contract/nft/" + Nftaddress + "/owner/" + Getaddress, true);
+            xhttp.open("GET", "https://th-api.klaytnapi.com/v2/contract/nft/" + Nftaddress + "/owner/" + GetAddress, false);
             xhttp.setRequestHeader("Authorization", "Basic S0FTS09JOTVJOTlHSkVGUDJFQUZFOEY2OmNOeGZvTHlMYVRUVHBobUltM0NWRFVxa21JMjViZm9pcWIySzJTNDg=");
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.setRequestHeader("x-chain-id", "8217");
