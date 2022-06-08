@@ -74,10 +74,11 @@
                 x.setAttribute("alt", "no image");
                 document.body.appendChild(x);
 
-                //제목
+                //제목, ID
                 var z = document.createElement("p");
-                document.body.appendChild(z).innerHTML = jsonimg.name;
-                
+                document.body.appendChild(z).innerHTML = "Name : " + jsonimg.name;
+                var a = document.createElement("p");
+                document.body.appendChild(a).innerHTML = "Sidian_ID : " + jsonimg.sidian_id;                
 
                 }
             
