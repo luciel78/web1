@@ -13,6 +13,7 @@
                     const accounts = window.klaytn.enable();
                     const account = accounts[0];
                     let OwnerAddress = klaytn.selectedAddress;
+                    // alert("address : " + OwnerAddress); // 카이카스 연결 지갑 주소
                     UserAction(OwnerAddress);                   
                 }
             }
@@ -36,6 +37,7 @@
             var xhttp = new XMLHttpRequest();            
             xhttp.onreadystatechange = function() {
                  if (this.readyState == 4 && this.status == 200) {
+                    // alert("NFT information : " + this.response);
                     let json = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
                     let i = json.items.length; // items 개수 확인
                     Getimage(json,i); // 이미지 함수 호출 ----->  Getimage()
@@ -47,18 +49,20 @@
             xhttp.setRequestHeader("x-chain-id", "8217");
             
             xhttp.send();
-
+            // alert(xhttp.status);
         }
 
 
         // 지갑내 메타데이터내 이미지 확인
         function Getimage(jsonobj,j){
-            for(a=0;a<4;a++){
+            for(a=5;a<10;a++){
 
             var xhttpjs = new XMLHttpRequest();
             xhttpjs.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) 
+                    alert("tokenUri_information : " + this.response);
                     let jsonimg = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
+                    // alert(this.response);
 
                 // 이미지 띄우기
                 var y = document.createElement('br');
@@ -78,6 +82,7 @@
                 }
             
             let ipfsurl = jsonobj.items[a].tokenUri; // 주소안 객체 image url 포함
+            alert("tokenUri : " + ipfsurl);
 
             xhttpjs.open("GET", ipfsurl, false);            
             xhttpjs.setRequestHeader("Authorization", "Basic S0FTS09JOTVJOTlHSkVGUDJFQUZFOEY2OmNOeGZvTHlMYVRUVHBobUltM0NWRFVxa21JMjViZm9pcWIySzJTNDg=");
@@ -90,6 +95,7 @@
             // xhttpjs.setRequestHeader("x-chain-id", "8217");
             
             xhttpjs.send();
+            // alert(xhttpjs.status);
         }
     } 
 
