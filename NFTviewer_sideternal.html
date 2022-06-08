@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 지갑 주소 확인
+        Walletconnect = function(){
+            if(window.klaytn !== 'undefined'){
+                if(window.klaytn.isKaikas){
+                    const accounts = window.klaytn.enable();
+                    const account = accounts[0];
+                    let OwnerAddress = klaytn.selectedAddress;
+                    // alert("address : " + OwnerAddress); // 카이카스 연결 지갑 주소
+                    UserAction(OwnerAddress);                   
+                }
+            }
+        }
+        
+
+        //지갑내 메타데이터 확인
+        function UserAction(GetAddress) {
+            // const Nftaddress = "0x05ffcbfd7fe222da0b2f39fd038407cd4dd8fcc1"; // NFT 상균
+            // GetAddress = "0xe7cfc757fd8858052664ebd38f645e2f7468ff37";
+            // const Nftaddress = "0x90329d076a0c7c62cacfc389c523c21b3b37bd8b"; // NFT 관순
+            // GetAddress = "0x40064acaf01e98eb06231533bae333eb6da54400";
+            // const Nftaddress = "0x5a293a1e234f4c26251fa0c69f33c83c38c091ff"; // NFT 메타콩즈
+            // GetAddress = "0x95b5e5edfe1f59e1151194d4f22a91db2b7aadb9";
+            const Nftaddress = "0x6617c45c730a4431590dce51ec744956b10924cf"; // NFT 시드이터널
+            GetAddress = "0xbf7e7dcfa125887330bc12d4e6153cd6e8ed54f1";
+
+
+
+            //지갑내 데타데이터 json 불러오기
+            var xhttp = new XMLHttpRequest();            
+            xhttp.onreadystatechange = function() {
+                 if (this.readyState == 4 && this.status == 200) {
+                    // alert("NFT information : " + this.response);
+                    let json = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
+                    let i = json.items.length; // items 개수 확인
+                    Getimage(json,i); // 이미지 함수 호출 ----->  Getimage()
+                }
+            }
+            xhttp.open("GET", "https://th-api.klaytnapi.com/v2/contract/nft/" + Nftaddress + "/owner/" + GetAddress, false);
+            xhttp.setRequestHeader("Authorization", "Basic S0FTS09JOTVJOTlHSkVGUDJFQUZFOEY2OmNOeGZvTHlMYVRUVHBobUltM0NWRFVxa21JMjViZm9pcWIySzJTNDg=");
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.setRequestHeader("x-chain-id", "8217");
+            
+            xhttp.send();
+            // alert(xhttp.status);
+        }
+
+
+        // 지갑내 메타데이터내 이미지 확인
+        function Getimage(jsonobj,j){
+            for(a=0;a<4;a++){
+
+            var xhttpjs = new XMLHttpRequest();
+            xhttpjs.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) 
+                    alert("tokenUri_information : " + this.response);
+                    let jsonimg = JSON.parse(this.response); // 응답된 JSON 텍스트를 객체로 변환
+                    // alert(this.response);
+
+                // 이미지 띄우기
+                var y = document.createElement('br');
+                document.body.appendChild(y);
+                var x = document.createElement("IMG");
+                x.setAttribute("src", jsonimg.image);
+                x.setAttribute("width", "620");
+                x.setAttribute("height", "620");
+                x.setAttribute("alt", "no image");
+                document.body.appendChild(x);
+
+                //제목
+                var z = document.createElement("p");
+                document.body.appendChild(z).innerHTML = jsonimg.name;
+                
+
+                }
+            
+            let ipfsurl = jsonobj.items[a].tokenUri; // 주소안 객체 image url 포함
+            alert("tokenUri : " + ipfsurl);
+
+            xhttpjs.open("GET", ipfsurl, false);            
+            xhttpjs.setRequestHeader("Authorization", "Basic S0FTS09JOTVJOTlHSkVGUDJFQUZFOEY2OmNOeGZvTHlMYVRUVHBobUltM0NWRFVxa21JMjViZm9pcWIySzJTNDg=");
+            // xhttpjs.setRequestHeader("Content-type", "multipart/form-data");
+            // xhttpjs.setRequestHeader("Origin", "http://localhost:8080");
+            // xhttpjs.setRequestHeader("User-Agent", "PostmanRuntime/7.29.0");
+            // xhttpjs.setRequestHeader("Access-Control-Request-Method", "GET");
+            // xhttpjs.setRequestHeader("Access-Control-Request-Headers", "Content-type");
+            // xhttpjs.setRequestHeader("User-Agent", "http://localhost:8080");
+            // xhttpjs.setRequestHeader("x-chain-id", "8217");
+            
+            xhttpjs.send();
+            // alert(xhttpjs.status);
+        }
+    } 
+
+
+    </script>
+</head>
+<body>
+    <button type="submit" onclick="Walletconnect()">connect wallet</button>
+
+</body>
+</html>
