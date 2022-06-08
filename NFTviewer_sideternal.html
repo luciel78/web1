@@ -55,7 +55,7 @@
 
         // 지갑내 메타데이터내 이미지 확인
         function Getimage(jsonobj,j){
-            for(a=5;a<10;a++){
+            for(a=15;a<20;a++){
 
             var xhttpjs = new XMLHttpRequest();
             xhttpjs.onreadystatechange = function() {
@@ -69,8 +69,8 @@
                 document.body.appendChild(y);
                 var x = document.createElement("IMG");
                 x.setAttribute("src", jsonimg.image);
-                x.setAttribute("width", "620");
-                x.setAttribute("height", "620");
+                x.setAttribute("width", "270");
+                x.setAttribute("height", "377");
                 x.setAttribute("alt", "no image");
                 document.body.appendChild(x);
 
