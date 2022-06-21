@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function view_nft() {
+            const wallet_address = "0xbf7e7dcfa125887330bc12d4e6153cd6e8ed54f1";
+            const nft_address = "0x6617c45c730a4431590dce51ec744956b10924cf";
+
+            var xhttp = new XMLHttpRequest();            
+            xhttp.onreadystatechange = function() {
+                 if (this.readyState == 4 && this.status == 200) {
+                    let json = JSON.parse(this.response);
+                    let i = json.items.length;
+                    getimage(json,i);
+                }
+            }
+            xhttp.open("GET", "https://th-api.klaytnapi.com/v2/contract/nft/" + nft_address + "/owner/" + wallet_address, false);
+            xhttp.setRequestHeader("Authorization", "Basic S0FTS09JOTVJOTlHSkVGUDJFQUZFOEY2OmNOeGZvTHlMYVRUVHBobUltM0NWRFVxa21JMjViZm9pcWIySzJTNDg=");
+            xhttp.setRequestHeader("x-chain-id", "8217");
+            
+            xhttp.send();
+        }
+
+
+        function getimage(json_obj,count) {
+            for(a=0;a<5;a++){
+
+                var xhttpobj = new XMLHttpRequest();            
+                xhttpobj.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        let json_img = JSON.parse(this.response);
+
+                        var x = document.createElement("IMG");
+                        x.setAttribute("src", json_img.image);
+                        x.setAttribute("width", "270");
+                        x.setAttribute("height", "377");
+                        document.body.appendChild(x);
+                        var z = document.createElement("p");
+                        document.body.appendChild(z).innerHTML = "Name : " + json_img.name;
+                        var a = document.createElement("p");
+                        document.body.appendChild(a).innerHTML = "Sidian_ID : " + json_img.sidian_id;                
+                    }
+                }
+            xhttpobj.open("GET",json_obj.items[a].tokenUri, false);
+            xhttpobj.send();
+            }
+        }
+
+
+    </script>
+
+
+
+</head>
+<body>
+    <script>
+        view_nft();
+    </script>
+
+
+
+    
+</body>
+</html>
